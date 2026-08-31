@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maia Vo</title>
+<meta name="description" content="Maia Vo — research, brand, and operations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F6F0E4;
+    --ink: #191510;
+    --oxblood: #7A1F2B;
+    --crimson: #C6432E;
+    --tape: #E4C77A;
+    --sticky: #FBF3C7;
+    --steel: #57534A;
+    --line: #DAD3C4;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Archivo', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  a {
+    color: var(--ink);
+    text-decoration-color: var(--line);
+    text-underline-offset: 3px;
+  }
+  a:hover { color: var(--oxblood); text-decoration-color: var(--oxblood); }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--oxblood);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Hero ---------- */
+  header.hero {
+    padding: 76px 0 56px;
+    opacity: 0;
+    animation: rise 0.7s ease-out forwards;
+    position: relative;
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .masthead-row {
+    position: relative;
+    display: inline-block;
+  }
+
+  .masthead {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 500;
+    font-size: clamp(64px, 14vw, 128px);
+    line-height: 0.86;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .hero-photo {
+    position: absolute;
+    top: -18px;
+    right: -70px;
+    width: 108px;
+    background: #fff;
+    padding: 8px 8px 26px;
+    box-shadow: 0 14px 28px rgba(25,21,16,0.28);
+    transform: rotate(7deg);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    z-index: 3;
+  }
+  .hero-photo:hover {
+    transform: rotate(0deg) scale(1.06);
+    box-shadow: 0 20px 36px rgba(25,21,16,0.35);
+  }
+  .hero-photo .photo-frame {
+    aspect-ratio: 4 / 5;
+    border: none;
+  }
+  .hero-photo .photo-fallback { font-size: 10px; }
+  .hero-photo .tape {
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-4deg);
+    width: 54px;
+    height: 18px;
+    background: var(--tape);
+    opacity: 0.9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  }
+
+  @media (max-width: 620px) {
+    .hero-photo { display: none; }
+  }
+
+  .tagline {
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(20px, 3vw, 26px);
+    max-width: 30ch;
+    margin: 28px 0 0;
+    color: var(--ink);
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+    margin-top: 36px;
+    font-size: 14px;
+    color: var(--steel);
+  }
+  .hero-meta a { color: var(--steel); }
+  .hero-meta > * { margin: 0 24px 8px 0; }
+  .hero-meta a:hover { color: var(--oxblood); }
+
+  /* ---------- About ---------- */
+  section.about {
+    padding: 12px 0 64px;
+    border-bottom: 1px solid var(--line);
+  }
+  .about p {
+    max-width: 62ch;
+    font-size: 18px;
+    color: var(--ink);
+  }
+
+  /* ---------- Section dividers ---------- */
+  .divider {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin: 64px 0 28px;
+  }
+  .divider h2 {
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    margin: 0;
+    white-space: nowrap;
+  }
+  .divider .rule {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* ---------- Entries ---------- */
+  .entry {
+    padding: 22px 0;
+  }
+  .entry + .entry {
+    border-top: 1px solid var(--line);
+  }
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .entry-org {
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .entry-dates {
+    font-size: 13px;
+    color: var(--steel);
+    white-space: nowrap;
+  }
+  .entry-role {
+    font-style: italic;
+    font-size: 15px;
+    color: var(--steel);
+    margin-top: 2px;
+  }
+  .entry p {
+    max-width: 62ch;
+    margin: 12px 0 0;
+    font-size: 15.5px;
+  }
+
+  /* ---------- Featured project ---------- */
+  .featured {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 2px;
+    padding: 40px 36px;
+    margin: 8px 0 12px;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .featured h3 {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 500;
+    font-size: 24px;
+    margin: 0 0 4px;
+  }
+  .featured .entry-dates { color: #C9C2B4; }
+  .featured p {
+    max-width: 56ch;
+    margin: 12px 0 0;
+    font-size: 15.5px;
+    color: #E7E2D6;
+  }
+  .featured-links {
+    margin-top: 18px;
+    display: flex;
+    gap: 24px;
+  }
+  .featured-links > * { margin-right: 24px; }
+  .featured-links a {
+    color: var(--paper);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration-color: var(--oxblood);
+  }
+  .featured-links a:hover { color: #E7A2A8; }
+
+  .gauge {
+    width: 96px;
+    height: 96px;
+  }
+
+  /* ---------- Education ---------- */
+  .edu p {
+    max-width: 62ch;
+    font-size: 15.5px;
+  }
+
+  /* ---------- Photo spread (scrapbook) ---------- */
+  .photo-spread {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 0 24px;
+    margin: 8px 0 40px;
+  }
+  .photo-card {
+    width: 44%;
+    background: #fff;
+    padding: 10px 10px 12px;
+    box-shadow: 0 12px 26px rgba(25,21,16,0.2);
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, z-index 0s;
+    z-index: 1;
+  }
+  .photo-card:hover {
+    transform: rotate(0deg) scale(1.05) !important;
+    box-shadow: 0 20px 36px rgba(25,21,16,0.3);
+    z-index: 10;
+  }
+  .photo-card:nth-child(1) { transform: rotate(-4deg); margin: 0 -22px 8px 0; }
+  .photo-card:nth-child(2) { transform: rotate(3deg); margin: 22px 0 8px -18px; }
+  .photo-card:nth-child(3) { transform: rotate(-2deg); margin: -10px -20px 8px 0; }
+  .photo-card:nth-child(4) { transform: rotate(4deg); margin: 30px 0 8px -18px; }
+  .photo-card:nth-child(5) { transform: rotate(-3deg); margin: -8px -22px 8px 0; }
+  .photo-card:nth-child(6) { transform: rotate(2deg); margin: 24px 0 8px -18px; }
+  .photo-card .tape {
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-4deg);
+    width: 56px;
+    height: 18px;
+    background: var(--tape);
+    opacity: 0.9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  }
+  .photo-card .photo-frame { border: none; }
+  .photo-card .photo-caption {
+    margin: 8px 2px 0;
+    text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .photo-card { width: 46%; }
+    .photo-card:nth-child(1), .photo-card:nth-child(3), .photo-card:nth-child(5) { margin: 0 -14px 30px 0; }
+    .photo-card:nth-child(2), .photo-card:nth-child(4), .photo-card:nth-child(6) { margin: 18px 0 30px -14px; }
+  }
+  .photo-frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: #EFEAE0;
+    overflow: hidden;
+    border: 1px dashed var(--line);
+  }
+  .photo-frame img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 2;
+  }
+  .photo-fallback {
+    display: flex;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    color: var(--steel);
+    font-size: 12px;
+    line-height: 1.5;
+    z-index: 1;
+  }
+  .photo-caption {
+    margin: 8px 0 0;
+    font-size: 12.5px;
+    font-style: italic;
+    color: var(--steel);
+  }
+
+  /* ---------- Poster frame ---------- */
+  .poster-frame {
+    margin: 28px 0 8px;
+    display: block;
+    max-width: 360px;
+  }
+  .poster-frame .photo-frame {
+    aspect-ratio: 4 / 3;
+  }
+  .poster-frame .photo-fallback {
+    font-style: normal;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 72px 0 64px;
+    margin-top: 40px;
+  }
+  footer .cta {
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    font-size: clamp(32px, 6vw, 44px);
+    margin: 0 0 28px;
+  }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 32px;
+    font-size: 15px;
+  }
+  .footer-links > * { margin: 0 32px 12px 0; }
+  .footer-note {
+    margin-top: 32px;
+    font-size: 12.5px;
+    color: var(--steel);
+  }
+
+  @media (max-width: 560px) {
+    .featured {
+      grid-template-columns: 1fr;
+      padding: 28px 24px;
+    }
+    .gauge { width: 72px; height: 72px; }
+    .photo-spread { grid-template-columns: 1fr 1fr; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="masthead-row">
+      <h1 class="masthead">MAIA<br>VO</h1>
+      <div class="hero-photo">
+        <div class="tape"></div>
+        <div class="photo-frame">
+          <img src="images/headshot.jpg" alt="Headshot" onerror="this.style.display='none';">
+          <div class="photo-fallback">images/headshot.jpg</div>
+        </div>
+      </div>
+    </div>
+    <p class="tagline">Welcome to my website! Feel free to keep reading to learn more.</p>
+    <div class="hero-meta">
+      <span>Houston, TX &mdash; open to Boston, Chicago, Austin, New York</span>
+      <a href="mailto:maiavo12@gmail.com">maiavo12@gmail.com</a>
+      <a href="https://www.linkedin.com/in/maiavo" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/maiavvo" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <section class="about">
+    <p>I've worked across a few different fields: research, consumer marketing, operations, and fashion. I'm a Northeastern grad, Business &amp; Health Science with a concentration in Finance, 3.78 GPA. I am based in Houston right now.</p>
+  </section>
+
+  <section>
+    <div class="divider"><h2>Operations &amp; strategy</h2><span class="rule"></span></div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-org">Hue Medical Holdings</span>
+        <span class="entry-dates">May 2026 &ndash; Present</span>
+      </div>
+      <div class="entry-role">Operations Manager</div>
+      <p>I'm the point of contact between leadership and outside legal counsel on contracts and compliance. I am building our company website from scratch.</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-org">Nutex Health Inc.</span>
+        <span class="entry-dates">May 2021 &ndash; Aug 2022</span>
+      </div>
+      <div class="entry-role">Business Strategy and Operations Intern</div>
+      <p>Researched the competitive healthcare market to find where the growth opportunities actually were.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="divider"><h2>Brand &amp; consumer</h2><span class="rule"></span></div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-org">Freelance Model &mdash; Runway &amp; Ecommerce</span>
+        <span class="entry-dates">8 years</span>
+      </div>
+      <div class="entry-role">Houston, Boston, New York</div>
+      <p>Modeled for 8 years. Runway for Akris, Alexis Monsanto, and Raúl Peñaranda. Ecommerce for Converse, New Balance, and Tootsies.</p>
+    </div>
+
+    <div class="photo-spread">
+      <div class="photo-card">
+        <div class="tape"></div>
+        <div class="photo-frame">
+          <img src="images/runway-akris.jpg" alt="Runway photo, Akris"
+               onerror="this.style.display='none';">
+          <div class="photo-fallback">images/runway-akris.jpg</div>
+        </div>
+        <p class="photo-caption">Runway &mdash; Akris</p>
+      </div>
+      <div class="photo-card">
+        <div class="tape"></div>
+        <div class="photo-frame">
+          <img src="images/runway-monsanto.jpg" alt="Runway photo, Alexis Monsanto"
+               onerror="this.style.display='none';">
+          <div class="photo-fallback">images/runway-monsanto.jpg</div>
+        </div>
+        <p class="photo-caption">Runway &mdash; Alexis Monsanto</p>
+      </div>
+      <div class="photo-card">
+        <div class="tape"></div>
+        <div class="photo-frame">
+          <img src="images/runway-penaranda.jpg" alt="Runway photo, Raul Peñaranda"
+               onerror="this.style.display='none';">
+          <div class="photo-fallback">images/runway-penaranda.jpg</div>
+        </div>
+        <p class="photo-caption">Runway &mdash; Raúl Peñaranda</p>
+      </div>
+      <div class="photo-card">
+        <div class="tape"></div>
+        <div class="photo-frame">
+          <img src="images/ecom-converse.jpg" alt="Ecommerce campaign photo, Converse"
+               onerror="this.style.display='none';">
+          <div class="photo-fallback">images/ecom-converse.jpg</div>
+        </div>
+        <p class="photo-caption">Ecommerce &mdash; Converse</p>
+      </div>
+      <div class="photo-card">
+        <div class="tape"></div>
+        <div class="photo-frame">
+          <img src="images/ecom-newbalance.jpg" alt="Ecommerce campaign photo, New Balance"
+               onerror="this.style.display='none';">
+          <div class="photo-fallback">images/ecom-newbalance.jpg</div>
+        </div>
+        <p class="photo-caption">Ecommerce &mdash; New Balance</p>
+      </div>
+      <div class="photo-card">
+        <div class="tape"></div>
+        <div class="photo-frame">
+          <img src="images/ecom-tootsies.jpg" alt="Ecommerce campaign photo, Tootsies"
+               onerror="this.style.display='none';">
+          <div class="photo-fallback">images/ecom-tootsies.jpg</div>
+        </div>
+        <p class="photo-caption">Ecommerce &mdash; Tootsies</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-org">Four Seasons Hotels and Resorts</span>
+        <span class="entry-dates">May 2023 &ndash; Jun 2024</span>
+      </div>
+      <div class="entry-role">Market Research &amp; Branding Strategy Intern</div>
+      <p>5-star, 5-diamond property. I managed reservations and seating flow for high-profile clientele in a fast-paced environment.</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-org">Beats by Dre</span>
+        <span class="entry-dates">May &ndash; Jul 2024</span>
+      </div>
+      <div class="entry-role">Market Research &amp; Branding Strategy Intern</div>
+      <p>Worked on go-to-market strategy for two launches: the Beats Pill relaunch and the Pro X Kim Kardashian collection. Synthesized consumer research from 1,000+ participants into recommendations for the team. Also analyzed Gen Z purchasing behavior for Q3 branding.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="divider"><h2>Research &amp; data</h2><span class="rule"></span></div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-org">University of Michigan Medical School</span>
+        <span class="entry-dates">Dec 2025 &ndash; May 2026</span>
+      </div>
+      <div class="entry-role">Undergraduate Research Assistant</div>
+      <p>Run drug synergy analyses using Loewe scores across genomic, metabolomic, and transcriptomic data. Built the Python pipeline to analyze 5,000+ drug-gene interactions across two ovarian cancer cell lines, OVCAR-4 and OVCAR-5.</p>
+
+      <a class="poster-frame" href="images/rise-poster.jpg" target="_blank" rel="noopener">
+        <div class="photo-frame">
+          <img src="images/rise-poster.jpg" alt="RISE Research Symposium poster"
+               onerror="this.style.display='none';">
+          <div class="photo-fallback">images/rise-poster.jpg<br>Add your RISE poster image here</div>
+        </div>
+        <p class="photo-caption">RISE Research Symposium &mdash; &ldquo;Screening of Drug Combination Synergy and Genetic Targets in Chemoresistant Ovarian Cancer&rdquo;</p>
+      </a>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-org">Link Lab, Northeastern University</span>
+        <span class="entry-dates">Jun 2025 &ndash; Jan 2026</span>
+      </div>
+      <div class="entry-role">Undergraduate Research Scholar</div>
+      <p>Analyzed 3,500+ data points from 120 postpartum participants to find what predicts recovery from diastasis recti. Built 8 interactive dashboards so clinicians could track it themselves.</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-org">Spear Physical Therapy</span>
+        <span class="entry-dates">Jul 2024 &ndash; Dec 2024</span>
+      </div>
+      <div class="entry-role">Physical Therapy Technician, Pelvic Floor Rehabilitation</div>
+      <p>Assisted PTs and OTs running rehab plans for 50+ patients a week, focused on pelvic floor rehab for postpartum and prenatal patients. Same population I studied later in the Link Lab, just from the clinical side.</p>
+    </div>
+
+    <div class="featured">
+      <svg class="gauge" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Risk gauge showing a score of 34 out of 100">
+        <circle cx="50" cy="50" r="42" stroke="#3A362E" stroke-width="10"/>
+        <circle cx="50" cy="50" r="42" stroke="#7A1F2B" stroke-width="10" stroke-linecap="round"
+          stroke-dasharray="264" stroke-dashoffset="174" transform="rotate(-90 50 50)"/>
+        <text x="50" y="46" text-anchor="middle" fill="#F6F3EE" font-family="Bodoni Moda, serif" font-size="26" font-weight="500">34</text>
+        <text x="50" y="64" text-anchor="middle" fill="#C9C2B4" font-family="Archivo, sans-serif" font-size="9">risk score</text>
+      </svg>
+      <div>
+        <h3>Athlete Injury Risk Prevention Dashboard</h3>
+        <span class="entry-dates">Nov 2025 &ndash; Jan 2026</span>
+        <p>Turns training load data (ACWR, load spikes, soreness) into a single 0&ndash;100 risk score. Built from sports medicine research, tracked 20 athletes over 120 days. Real-time monitoring, color-coded status, no spreadsheet required.</p>
+        <div class="featured-links">
+          <a href="https://athlete-injury-risk-engine.onrender.com" target="_blank" rel="noopener">View live</a>
+          <a href="https://github.com/maiavvo/athlete-injury-risk-engine" target="_blank" rel="noopener">View code</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="edu">
+    <div class="divider"><h2>Education</h2><span class="rule"></span></div>
+    <p><strong>Northeastern University, D&rsquo;Amore-McKim School of Business.</strong> B.S., Business Administration &amp; Health Science, Finance concentration, 3.78 GPA. NCAA Division I TaeKwonDo athlete, 3x ECTC Champion. Volunteer with MEDLife.</p>
+  </section>
+
+  <footer>
+    <p class="cta">Let's talk.</p>
+    <div class="footer-links">
+      <a href="mailto:maiavo12@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/maiavo" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/maiavvo" target="_blank" rel="noopener">GitHub</a>
+      <a href="resume.pdf">Resume</a>
+    </div>
+    <p class="footer-note">Add a resume.pdf file to this site's folder for the Resume link above to work.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
