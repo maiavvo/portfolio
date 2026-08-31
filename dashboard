@@ -415,6 +415,21 @@
 
   <section class="about">
     <p>I've worked across a few different fields: research, consumer marketing, operations, and fashion. I'm a Northeastern grad, Business &amp; Health Science with a concentration in Finance, 3.78 GPA. I am based in Houston right now.</p>
+    <p>Apart from career, I love being outdoors surrounded by any body of water, learning new things, and having an adventure.</p>
+  </section>
+
+  <section>
+    <div class="divider"><h2>Resume &amp; CV</h2><span class="rule"></span></div>
+    <div class="docs-row">
+      <a class="doc-card" href="docs/resume.pdf" target="_blank" rel="noopener">
+        <span class="doc-label">R&eacute;sum&eacute;</span>
+        <span class="doc-sub">One page, business-focused</span>
+      </a>
+      <a class="doc-card" href="docs/cv.pdf" target="_blank" rel="noopener">
+        <span class="doc-label">CV</span>
+        <span class="doc-sub">Full history &mdash; research, clinical, professional</span>
+      </a>
+    </div>
   </section>
 
   <section>
@@ -444,11 +459,11 @@
 
     <div class="entry">
       <div class="entry-head">
-        <span class="entry-org">Freelance Model &mdash; Runway &amp; Ecommerce</span>
+        <span class="entry-org">Signed Model &mdash; Runway &amp; Ecommerce</span>
         <span class="entry-dates">8 years</span>
       </div>
       <div class="entry-role">Houston, Boston, New York</div>
-      <p>Modeled for 8 years. Runway for Akris, Alexis Monsanto, and Raúl Peñaranda. Ecommerce for Converse, New Balance, and Tootsies.</p>
+      <p>Modeled for 8 years under three signed contracts. Runway for Akris, Alexis Monsanto, and Raúl Peñaranda. Ecommerce for Converse, New Balance, and Tootsies.</p>
     </div>
 
     <div class="photo-spread">
