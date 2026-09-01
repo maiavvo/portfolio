@@ -7,9 +7,9 @@
 <meta name="description" content="Maia Vo — research, brand, and operations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400;1,6..96,500&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400;1,6..96,500&family=Space+Mono:wght@400;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet"><style>
   :root {
+    --paper: #F6F0E4;
     --ink: #191510;
     --oxblood: #7A1F2B;
     --crimson: #C6432E;
@@ -26,6 +26,7 @@
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { animation: none !important; transition: none !important; }
+    header.hero { opacity: 1; }
   }
 
   body {
@@ -54,7 +55,6 @@
     padding: 0 28px;
   }
 
-  /* ---------- Hero ---------- */
   header.hero {
     padding: 76px 0 56px;
     opacity: 0;
@@ -71,27 +71,27 @@
     display: inline-block;
   }
 
-.masthead {
-  font-family: 'Bodoni Moda', serif;
+  .masthead {
+  font-family: 'Space Mono', monospace;
   font-weight: 700;
-  font-size: clamp(64px, 14vw, 128px);
-  line-height: 0.86;
-  letter-spacing: 0.02em;
+  font-size: clamp(52px, 11vw, 100px);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
   margin: 0;
 }
 
-.hero-photo {
-  position: absolute;
-  top: -18px;
-  right: -195px;
-  width: 145px;
-  background: #fff;
-  padding: 8px 8px 26px;
-  box-shadow: 0 14px 28px rgba(25,21,16,0.28);
-  transform: rotate(7deg);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  z-index: 3;
-}
+  .hero-photo {
+    position: absolute;
+    top: -18px;
+    right: -195px;
+    width: 145px;
+    background: #fff;
+    padding: 8px 8px 26px;
+    box-shadow: 0 14px 28px rgba(25,21,16,0.28);
+    transform: rotate(7deg);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    z-index: 3;
+  }
   .hero-photo:hover {
     transform: rotate(0deg) scale(1.06);
     box-shadow: 0 20px 36px rgba(25,21,16,0.35);
@@ -127,34 +127,32 @@
     color: var(--ink);
   }
 
-.hero-meta {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 8px 24px;
-  margin-top: 36px;
-  font-size: 14px;
-  color: var(--steel);
-  overflow-x: auto;
-  white-space: nowrap;
-}
-.hero-meta a { color: var(--steel); }
-.hero-meta > * { margin: 0 20px 0 0; }
-.hero-meta a:hover { color: var(--oxblood); }
+  .hero-meta {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px 24px;
+    margin-top: 36px;
+    font-size: 14px;
+    color: var(--steel);
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .hero-meta a { color: var(--steel); }
+  .hero-meta > * { margin: 0 20px 0 0; }
+  .hero-meta a:hover { color: var(--oxblood); }
 
-  /* ---------- About ---------- */
   section.about {
     padding: 12px 0 64px;
     border-bottom: 1px solid var(--line);
   }
-.about p {
-  max-width: 62ch;
-  font-size: 20px;
-  font-family: 'Bodoni Moda', serif;
-  font-style: normal;
-  color: var(--ink);
-}
+  .about p {
+    max-width: 62ch;
+    font-size: 20px;
+    font-family: 'Bodoni Moda', serif;
+    font-style: normal;
+    color: var(--ink);
+  }
 
-  /* ---------- Section dividers ---------- */
   .divider {
     display: flex;
     align-items: baseline;
@@ -175,7 +173,6 @@
     background: var(--line);
   }
 
-  /* ---------- Entries ---------- */
   .entry {
     padding: 22px 0;
   }
@@ -210,7 +207,6 @@
     font-size: 15.5px;
   }
 
-  /* ---------- Featured project ---------- */
   .featured {
     background: var(--ink);
     color: var(--paper);
@@ -253,53 +249,52 @@
     width: 96px;
     height: 96px;
   }
-  .docs-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin: 8px 0 4px;
-}
-.doc-card {
-  flex: 1;
-  min-width: 200px;
-  border: 1px solid var(--line);
-  padding: 20px 22px;
-  text-decoration: none;
-  color: var(--ink);
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-.doc-card:hover {
-  border-color: var(--crimson);
-  transform: translateY(-2px);
-}
-.doc-card .doc-label {
-  font-family: 'Bodoni Moda', serif;
-  font-style: italic;
-  font-size: 20px;
-  display: block;
-  margin-bottom: 4px;
-}
-.doc-card .doc-sub {
-  font-size: 13px;
-  color: var(--steel);
-}
 
-  /* ---------- Education ---------- */
+  .docs-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 8px 0 4px;
+  }
+  .doc-card {
+    flex: 1;
+    min-width: 200px;
+    border: 1px solid var(--line);
+    padding: 20px 22px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .doc-card:hover {
+    border-color: var(--crimson);
+    transform: translateY(-2px);
+  }
+  .doc-card .doc-label {
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .doc-card .doc-sub {
+    font-size: 13px;
+    color: var(--steel);
+  }
+
   .edu p {
     max-width: 62ch;
     font-size: 15.5px;
   }
   .entry-bullets {
-  margin: 12px 0 0;
-  padding-left: 20px;
-  max-width: 62ch;
-}
-.entry-bullets li {
-  font-size: 15.5px;
-  margin-bottom: 6px;
-}
+    margin: 12px 0 0;
+    padding-left: 20px;
+    max-width: 62ch;
+  }
+  .entry-bullets li {
+    font-size: 15.5px;
+    margin-bottom: 6px;
+  }
 
-  /* ---------- Photo spread (scrapbook) ---------- */
   .photo-spread {
     display: flex;
     flex-wrap: wrap;
@@ -384,7 +379,6 @@
     color: var(--steel);
   }
 
-  /* ---------- Poster frame ---------- */
   .poster-frame {
     margin: 28px 0 8px;
     display: block;
@@ -397,7 +391,6 @@
     font-style: normal;
   }
 
-  /* ---------- Footer ---------- */
   footer {
     padding: 72px 0 64px;
     margin-top: 40px;
@@ -510,7 +503,7 @@
         <span class="entry-dates">June 2018 &ndash; April 2026</span>
       </div>
       <div class="entry-role">Houston, Boston, New York</div>
-<p>Modeled for 8 years under three signed contracts. Pictured is runway work for Alexis Monsanto and Raúl Peñaranda, along with ecommerce campaigns for Converse, New Balance, Tootsies, and Henrik Vibskov.</p>
+<p>Modeled under three signed contracts. Pictured is runway work for Alexis Monsanto and Raúl Peñaranda, along with ecommerce campaigns for Converse, New Balance, Tootsies, and Henrik Vibskov.</p>
 <div class="photo-spread">
 <div class="photo-card reveal">
   <div class="tape"></div>
@@ -626,7 +619,8 @@
 <ul class="entry-bullets">
   <li>Analyzed 3,500+ data points from 120 postpartum participants to find what predicts recovery from diastasis recti</li>
   <li>Built 8 interactive dashboards so clinicians could track it themselves</li>
-</ul>    </div>
+</ul>
+    </div>
 
     <div class="entry">
       <div class="entry-head">
@@ -637,7 +631,8 @@
 <ul class="entry-bullets">
   <li>Assisted PTs and OTs running rehab plans for 50+ patients a week, focused on pelvic floor rehab for postpartum and prenatal patients</li>
   <li>Same population I studied later in the Link Lab, just from the clinical side</li>
-</ul>    </div>
+</ul>
+    </div>
 
     <div class="featured">
       <svg class="gauge" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Risk gauge showing a score of 34 out of 100">
@@ -661,14 +656,15 @@
 
   <section class="edu">
     <div class="divider"><h2>Education</h2><span class="rule"></span></div>
-<p><strong>Northeastern University, D&rsquo;Amore-McKim School of Business.</strong> B.S., Business Administration &amp; Health Science, Finance concentration, 3.78 GPA.</p>
-<p>NCAA Division I TaeKwonDo athlete, 3x ECTC Champion. Volunteer with MEDLife.</p>  </section>
+    <p><strong>Northeastern University, D&rsquo;Amore-McKim School of Business.</strong> B.S., Business Administration &amp; Health Science, Finance concentration, 3.78 GPA.</p>
+    <p>NCAA Division I TaeKwonDo athlete, 3x ECTC Champion. Volunteer with MEDLife.</p>
+  </section>
 
   <footer>
     <div class="footer-links">
       <a href="mailto:maiavo12@gmail.com">Email</a>
       <a href="https://www.linkedin.com/in/maiavo" target="_blank" rel="noopener">LinkedIn</a>
-     <a href="https://github.com/maiavvo" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/maiavvo" target="_blank" rel="noopener">GitHub</a>
     </div>
   </footer>
 
