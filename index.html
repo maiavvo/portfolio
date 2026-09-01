@@ -7,7 +7,8 @@
 <meta name="description" content="Maia Vo — research, brand, and operations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400;1,6..96,500&family=Space+Mono:wght@400;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet"><style>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400;1,6..96,500&family=Space+Mono:wght@400;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
   :root {
     --paper: #F6F0E4;
     --ink: #191510;
@@ -72,13 +73,26 @@
   }
 
   .masthead {
-  font-family: 'Space Mono', monospace;
-  font-weight: 700;
-  font-size: clamp(52px, 11vw, 100px);
-  line-height: 0.92;
-  letter-spacing: -0.01em;
-  margin: 0;
-}
+    font-family: 'Space Mono', monospace;
+    font-weight: 400;
+    font-size: clamp(52px, 11vw, 100px);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .masthead .letter {
+    display: inline-block;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.25s ease;
+  }
+  .masthead .letter:hover {
+    transform: translateY(-10px) rotate(-4deg);
+    color: var(--crimson);
+  }
+  .masthead .letter:nth-child(1),
+  .masthead .letter:nth-child(5) {
+    font-size: 1.4em;
+    vertical-align: baseline;
+  }
 
   .hero-photo {
     position: absolute;
@@ -430,7 +444,7 @@
 
   <header class="hero">
     <div class="masthead-row">
-      <h1 class="masthead">MAIA<br>VO</h1>
+      <h1 class="masthead"><span class="letter">M</span><span class="letter">A</span><span class="letter">I</span><span class="letter">A</span> <span class="letter">V</span><span class="letter">O</span></h1>
       <div class="hero-photo">
         <div class="tape"></div>
         <div class="photo-frame">
