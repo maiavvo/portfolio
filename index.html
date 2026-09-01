@@ -84,7 +84,7 @@
   .hero-photo {
     position: absolute;
     top: -18px;
-    right: -70px;
+    right: -160px;
     width: 108px;
     background: #fff;
     padding: 8px 8px 26px;
@@ -128,17 +128,19 @@
     color: var(--ink);
   }
 
-  .hero-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 28px;
-    margin-top: 36px;
-    font-size: 14px;
-    color: var(--steel);
-  }
-  .hero-meta a { color: var(--steel); }
-  .hero-meta > * { margin: 0 24px 8px 0; }
-  .hero-meta a:hover { color: var(--oxblood); }
+.hero-meta {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px 24px;
+  margin-top: 36px;
+  font-size: 14px;
+  color: var(--steel);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.hero-meta a { color: var(--steel); }
+.hero-meta > * { margin: 0 20px 0 0; }
+.hero-meta a:hover { color: var(--oxblood); }
 
   /* ---------- About ---------- */
   section.about {
@@ -250,12 +252,51 @@
     width: 96px;
     height: 96px;
   }
+  .docs-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 8px 0 4px;
+}
+.doc-card {
+  flex: 1;
+  min-width: 200px;
+  border: 1px solid var(--line);
+  padding: 20px 22px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.doc-card:hover {
+  border-color: var(--crimson);
+  transform: translateY(-2px);
+}
+.doc-card .doc-label {
+  font-family: 'Bodoni Moda', serif;
+  font-style: italic;
+  font-size: 20px;
+  display: block;
+  margin-bottom: 4px;
+}
+.doc-card .doc-sub {
+  font-size: 13px;
+  color: var(--steel);
+}
 
   /* ---------- Education ---------- */
   .edu p {
     max-width: 62ch;
     font-size: 15.5px;
   }
+  .entry-bullets {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  max-width: 62ch;
+}
+.entry-bullets li {
+  font-size: 15.5px;
+  margin-bottom: 6px;
+}
 
   /* ---------- Photo spread (scrapbook) ---------- */
   .photo-spread {
@@ -404,9 +445,8 @@
         </div>
       </div>
     </div>
-    <p class="tagline">Welcome to my website! Feel free to keep reading to learn more.</p>
+    <p class="tagline">Welcome to my website! Keep reading to learn more.</p>
     <div class="hero-meta">
-      <span>Houston, TX &mdash; open to Boston, Chicago, Austin, New York</span>
       <a href="mailto:maiavo12@gmail.com">maiavo12@gmail.com</a>
       <a href="https://www.linkedin.com/in/maiavo" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/maiavvo" target="_blank" rel="noopener">GitHub</a>
@@ -414,18 +454,18 @@
   </header>
 
   <section class="about">
-    <p>I've worked across a few different fields: research, consumer marketing, operations, and fashion. I'm a Northeastern grad, Business &amp; Health Science with a concentration in Finance, 3.78 GPA. I am based in Houston right now.</p>
-    <p>Apart from career, I love being outdoors surrounded by any body of water, learning new things, and having an adventure.</p>
+    <p>I've worked across a few different fields: research, consumer marketing, operations, and fashion. I'm a Northeastern grad, Business &amp; Health Science with a concentration in Finance. I have had the opportunity to work and live in Houston, Boston, and New York, and am looking for my next city to call home.</p>
+    <p>Apart from career, I love being outdoors surrounded by any body of water, learning new things, and having an adventure!</p>
   </section>
 
-  <section>
+<section>
     <div class="divider"><h2>Resume &amp; CV</h2><span class="rule"></span></div>
     <div class="docs-row">
-      <a class="doc-card" href="docs/resume.pdf" target="_blank" rel="noopener">
+      <a class="doc-card" href="docs/resume.pdf" download="Vo_Maia_Resume.pdf" target="_blank" rel="noopener">
         <span class="doc-label">R&eacute;sum&eacute;</span>
         <span class="doc-sub">One page, business-focused</span>
       </a>
-      <a class="doc-card" href="docs/cv.pdf" target="_blank" rel="noopener">
+      <a class="doc-card" href="docs/cv.pdf" download="Vo_Maia_CV.pdf" target="_blank" rel="noopener">
         <span class="doc-label">CV</span>
         <span class="doc-sub">Full history &mdash; research, clinical, professional</span>
       </a>
@@ -441,7 +481,11 @@
         <span class="entry-dates">May 2026 &ndash; Present</span>
       </div>
       <div class="entry-role">Operations Manager</div>
-      <p>I'm the point of contact between leadership and outside legal counsel on contracts and compliance. I am building our company website from scratch.</p>
+<ul class="entry-bullets">
+  <li>Work with outside legal counsel on contracts and compliance</li>
+  <li>Evaluate new technology for the company</li>
+  <li>Built the company website from scratch</li>
+</ul>
     </div>
 
     <div class="entry">
@@ -450,7 +494,9 @@
         <span class="entry-dates">May 2021 &ndash; Aug 2022</span>
       </div>
       <div class="entry-role">Business Strategy and Operations Intern</div>
-      <p>Researched the competitive healthcare market to find where the growth opportunities actually were.</p>
+<ul class="entry-bullets">
+  <li>Researched the healthcare market to find open growth opportunities</li>
+</ul>
     </div>
   </section>
 
@@ -463,19 +509,17 @@
         <span class="entry-dates">8 years</span>
       </div>
       <div class="entry-role">Houston, Boston, New York</div>
-      <p>Modeled for 8 years under three signed contracts. Runway for Akris, Alexis Monsanto, and Raúl Peñaranda. Ecommerce for Converse, New Balance, and Tootsies.</p>
-    </div>
-
-    <div class="photo-spread">
-      <div class="photo-card">
-        <div class="tape"></div>
-        <div class="photo-frame">
-          <img src="images/runway-akris.jpg" alt="Runway photo, Akris"
-               onerror="this.style.display='none';">
-          <div class="photo-fallback">images/runway-akris.jpg</div>
-        </div>
-        <p class="photo-caption">Runway &mdash; Akris</p>
-      </div>
+<p>Modeled for 8 years under three signed contracts. Pictured is runway work for Alexis Monsanto and Raúl Peñaranda, along with ecommerce campaigns for Converse, New Balance, Tootsies, and Henrik Vibskov.</p>
+<div class="photo-spread">
+<div class="photo-card reveal">
+  <div class="tape"></div>
+  <div class="photo-frame">
+    <img src="images/ecom-henrikvibskov.jpg" alt="Ecommerce campaign photo, Henrik Vibskov"
+         onerror="this.style.display='none';">
+    <div class="photo-fallback">images/ecom-henrikvibskov.jpg</div>
+  </div>
+  <p class="photo-caption">Ecommerce &mdash; Henrik Vibskov</p>
+</div>
       <div class="photo-card">
         <div class="tape"></div>
         <div class="photo-frame">
@@ -529,7 +573,10 @@
         <span class="entry-dates">May 2023 &ndash; Jun 2024</span>
       </div>
       <div class="entry-role">Market Research &amp; Branding Strategy Intern</div>
-      <p>5-star, 5-diamond property. I managed reservations and seating flow for high-profile clientele in a fast-paced environment.</p>
+<ul class="entry-bullets">
+  <li>Worked at a 5-star, 5-diamond property</li>
+  <li>Managed reservations and seating flow for high-profile clientele</li>
+</ul>
     </div>
 
     <div class="entry">
@@ -538,7 +585,11 @@
         <span class="entry-dates">May &ndash; Jul 2024</span>
       </div>
       <div class="entry-role">Market Research &amp; Branding Strategy Intern</div>
-      <p>Worked on go-to-market strategy for two launches: the Beats Pill relaunch and the Pro X Kim Kardashian collection. Synthesized consumer research from 1,000+ participants into recommendations for the team. Also analyzed Gen Z purchasing behavior for Q3 branding.</p>
+<ul class="entry-bullets">
+  <li>Helped shape go-to-market strategy for two launches: the Beats Pill relaunch and the Pro X Kim Kardashian collection</li>
+  <li>Synthesized consumer research from 1,000+ participants</li>
+  <li>Analyzed Gen Z purchasing behavior for Q3 branding</li>
+</ul>
     </div>
   </section>
 
@@ -551,8 +602,10 @@
         <span class="entry-dates">Dec 2025 &ndash; May 2026</span>
       </div>
       <div class="entry-role">Undergraduate Research Assistant</div>
-      <p>Run drug synergy analyses using Loewe scores across genomic, metabolomic, and transcriptomic data. Built the Python pipeline to analyze 5,000+ drug-gene interactions across two ovarian cancer cell lines, OVCAR-4 and OVCAR-5.</p>
-
+<ul class="entry-bullets">
+  <li>Run drug synergy analyses using Loewe scores across genomic, metabolomic, and transcriptomic data</li>
+  <li>Built the Python pipeline to analyze 5,000+ drug-gene interactions across two ovarian cancer cell lines, OVCAR-4 and OVCAR-5</li>
+</ul>
       <a class="poster-frame" href="images/rise-poster.jpg" target="_blank" rel="noopener">
         <div class="photo-frame">
           <img src="images/rise-poster.jpg" alt="RISE Research Symposium poster"
@@ -569,8 +622,10 @@
         <span class="entry-dates">Jun 2025 &ndash; Jan 2026</span>
       </div>
       <div class="entry-role">Undergraduate Research Scholar</div>
-      <p>Analyzed 3,500+ data points from 120 postpartum participants to find what predicts recovery from diastasis recti. Built 8 interactive dashboards so clinicians could track it themselves.</p>
-    </div>
+<ul class="entry-bullets">
+  <li>Analyzed 3,500+ data points from 120 postpartum participants to find what predicts recovery from diastasis recti</li>
+  <li>Built 8 interactive dashboards so clinicians could track it themselves</li>
+</ul>    </div>
 
     <div class="entry">
       <div class="entry-head">
@@ -578,8 +633,10 @@
         <span class="entry-dates">Jul 2024 &ndash; Dec 2024</span>
       </div>
       <div class="entry-role">Physical Therapy Technician, Pelvic Floor Rehabilitation</div>
-      <p>Assisted PTs and OTs running rehab plans for 50+ patients a week, focused on pelvic floor rehab for postpartum and prenatal patients. Same population I studied later in the Link Lab, just from the clinical side.</p>
-    </div>
+<ul class="entry-bullets">
+  <li>Assisted PTs and OTs running rehab plans for 50+ patients a week, focused on pelvic floor rehab for postpartum and prenatal patients</li>
+  <li>Same population I studied later in the Link Lab, just from the clinical side</li>
+</ul>    </div>
 
     <div class="featured">
       <svg class="gauge" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Risk gauge showing a score of 34 out of 100">
@@ -603,18 +660,15 @@
 
   <section class="edu">
     <div class="divider"><h2>Education</h2><span class="rule"></span></div>
-    <p><strong>Northeastern University, D&rsquo;Amore-McKim School of Business.</strong> B.S., Business Administration &amp; Health Science, Finance concentration, 3.78 GPA. NCAA Division I TaeKwonDo athlete, 3x ECTC Champion. Volunteer with MEDLife.</p>
-  </section>
+<p><strong>Northeastern University, D&rsquo;Amore-McKim School of Business.</strong> B.S., Business Administration &amp; Health Science, Finance concentration, 3.78 GPA.</p>
+<p>NCAA Division I TaeKwonDo athlete, 3x ECTC Champion. Volunteer with MEDLife.</p>  </section>
 
   <footer>
-    <p class="cta">Let's talk.</p>
     <div class="footer-links">
       <a href="mailto:maiavo12@gmail.com">Email</a>
       <a href="https://www.linkedin.com/in/maiavo" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/maiavvo" target="_blank" rel="noopener">GitHub</a>
-      <a href="resume.pdf">Resume</a>
+     <a href="https://github.com/maiavvo" target="_blank" rel="noopener">GitHub</a>
     </div>
-    <p class="footer-note">Add a resume.pdf file to this site's folder for the Resume link above to work.</p>
   </footer>
 
 </div>
