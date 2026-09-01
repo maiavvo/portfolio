@@ -270,30 +270,45 @@
     gap: 16px;
     margin: 8px 0 4px;
   }
-  .doc-card {
-    flex: 1;
-    min-width: 200px;
-    border: 1px solid var(--line);
-    padding: 20px 22px;
-    text-decoration: none;
-    color: var(--ink);
-    transition: border-color 0.2s ease, transform 0.2s ease;
-  }
-  .doc-card:hover {
-    border-color: var(--crimson);
-    transform: translateY(-2px);
-  }
-  .doc-card .doc-label {
-    font-family: 'Bodoni Moda', serif;
-    font-style: italic;
-    font-size: 20px;
-    display: block;
-    margin-bottom: 4px;
-  }
-  .doc-card .doc-sub {
-    font-size: 13px;
-    color: var(--steel);
-  }
+.doc-card {
+  flex: 1;
+  min-width: 200px;
+  border: 1px solid var(--line);
+  padding: 20px 22px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.doc-card:hover {
+  border-color: var(--crimson);
+  transform: translateY(-2px);
+}
+.doc-view {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+}
+.doc-card .doc-label {
+  font-family: 'Bodoni Moda', serif;
+  font-style: italic;
+  font-size: 20px;
+  display: block;
+  margin-bottom: 4px;
+}
+.doc-card .doc-sub {
+  font-size: 13px;
+  color: var(--steel);
+  display: block;
+}
+.doc-download {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 12.5px;
+  color: var(--steel);
+  text-decoration-color: var(--line);
+}
+.doc-download:hover {
+  color: var(--oxblood);
+  text-decoration-color: var(--oxblood);
+}
 
   .edu p {
     max-width: 62ch;
@@ -468,15 +483,21 @@
 
 <section>
     <div class="divider"><h2>Resume &amp; CV</h2><span class="rule"></span></div>
-    <div class="docs-row">
-      <a class="doc-card" href="docs/resume.pdf" download="Vo_Maia_Resume.pdf" target="_blank" rel="noopener">
-        <span class="doc-label">R&eacute;sum&eacute;</span>
-        <span class="doc-sub">One page, business-focused</span>
-      </a>
-      <a class="doc-card" href="docs/cv.pdf" download="Vo_Maia_CV.pdf" target="_blank" rel="noopener">
-        <span class="doc-label">CV</span>
-        <span class="doc-sub">Full history &mdash; research, clinical, professional</span>
-      </a>
+<div class="docs-row">
+      <div class="doc-card">
+        <a class="doc-view" href="docs/resume.pdf" target="_blank" rel="noopener">
+          <span class="doc-label">R&eacute;sum&eacute;</span>
+          <span class="doc-sub">One page, business-focused</span>
+        </a>
+        <a class="doc-download" href="docs/resume.pdf" download="Vo_Maia_Resume.pdf">Download</a>
+      </div>
+      <div class="doc-card">
+        <a class="doc-view" href="docs/cv.pdf" target="_blank" rel="noopener">
+          <span class="doc-label">CV</span>
+          <span class="doc-sub">Full history &mdash; research, clinical, professional</span>
+        </a>
+        <a class="doc-download" href="docs/cv.pdf" download="Vo_Maia_CV.pdf">Download</a>
+      </div>
     </div>
   </section>
 
