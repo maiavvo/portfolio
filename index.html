@@ -892,7 +892,9 @@
 
       // Duck lives somewhere on screen and mostly wanders on its own;
       // only occasionally does it decide to go say hi to the cursor.
-      var duckX = mouseX, duckY = mouseY;
+      var duckMargin = 60;
+      var duckX = duckMargin + Math.random() * (window.innerWidth - duckMargin * 2);
+      var duckY = duckMargin + Math.random() * (window.innerHeight - duckMargin * 2);
       var duckFacingLeft = false;
       var duckState = 'wander'; // 'wander' | 'seek' | 'pause'
       var targetX = duckX, targetY = duckY;
