@@ -32,7 +32,9 @@
 
   body {
     margin: 0;
-    background: var(--paper);
+    background-color: var(--paper);
+    background-image: radial-gradient(circle at 1px 1px, rgba(25,21,16,0.07) 1px, transparent 0);
+    background-size: 18px 18px;
     color: var(--ink);
     font-family: 'Archivo', sans-serif;
     font-size: 16px;
@@ -270,45 +272,45 @@
     gap: 16px;
     margin: 8px 0 4px;
   }
-.doc-card {
-  flex: 1;
-  min-width: 200px;
-  border: 1px solid var(--line);
-  padding: 20px 22px;
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-.doc-card:hover {
-  border-color: var(--crimson);
-  transform: translateY(-2px);
-}
-.doc-view {
-  display: block;
-  text-decoration: none;
-  color: var(--ink);
-}
-.doc-card .doc-label {
-  font-family: 'Bodoni Moda', serif;
-  font-style: italic;
-  font-size: 20px;
-  display: block;
-  margin-bottom: 4px;
-}
-.doc-card .doc-sub {
-  font-size: 13px;
-  color: var(--steel);
-  display: block;
-}
-.doc-download {
-  display: inline-block;
-  margin-top: 12px;
-  font-size: 12.5px;
-  color: var(--steel);
-  text-decoration-color: var(--line);
-}
-.doc-download:hover {
-  color: var(--oxblood);
-  text-decoration-color: var(--oxblood);
-}
+  .doc-card {
+    flex: 1;
+    min-width: 200px;
+    border: 1px solid var(--line);
+    padding: 20px 22px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .doc-card:hover {
+    border-color: var(--crimson);
+    transform: translateY(-2px);
+  }
+  .doc-view {
+    display: block;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .doc-card .doc-label {
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .doc-card .doc-sub {
+    font-size: 13px;
+    color: var(--steel);
+    display: block;
+  }
+  .doc-download {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 12.5px;
+    color: var(--steel);
+    text-decoration-color: var(--line);
+  }
+  .doc-download:hover {
+    color: var(--oxblood);
+    text-decoration-color: var(--oxblood);
+  }
 
   .edu p {
     max-width: 62ch;
@@ -451,6 +453,31 @@
     .gauge { width: 72px; height: 72px; }
     .photo-spread { grid-template-columns: 1fr 1fr; gap: 10px; }
   }
+
+  /* ---------- Custom cursor (Y2K pointer + glitter streak) ---------- */
+  html.custom-cursor-active,
+  html.custom-cursor-active * {
+    cursor: none !important;
+  }
+  .cursor-pointer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 32px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(0, 0);
+    filter: drop-shadow(1px 2px 1px rgba(0,0,0,0.35));
+    transition: filter 0.15s ease;
+  }
+  .cursor-pointer.is-hover {
+    filter: drop-shadow(1px 2px 1px rgba(0,0,0,0.35)) drop-shadow(0 0 6px var(--crimson));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -483,7 +510,7 @@
 
 <section>
     <div class="divider"><h2>Resume &amp; CV</h2><span class="rule"></span></div>
-<div class="docs-row">
+    <div class="docs-row">
       <div class="doc-card">
         <a class="doc-view" href="docs/resume.pdf" target="_blank" rel="noopener">
           <span class="doc-label">Resume</span>
@@ -513,7 +540,7 @@
 <ul class="entry-bullets">
   <li>Work with outside legal counsel on contracts and compliance</li>
   <li>Evaluate new technology for the company</li>
-  <li>Helped build the company website</li>
+  <li>Built the company website from scratch</li>
 </ul>
     </div>
 
@@ -538,9 +565,9 @@
         <span class="entry-dates">June 2018 &ndash; April 2026</span>
       </div>
       <div class="entry-role">Houston, Boston, New York</div>
-<p>Modeled under three signed contracts. Pictured is runway work for Alexis Monsanto and Raúl Peñaranda, along with ecommerce campaigns for Henrik Vibskov, Converse, New Balance, and Tootsies.</p>
+<p>Modeled under three signed contracts. Pictured is runway work for Alexis Monsanto and Raúl Peñaranda, along with ecommerce campaigns for Converse, New Balance, Tootsies, and Henrik Vibskov.</p>
 <div class="photo-spread">
-<div class="photo-card reveal">
+<div class="photo-card">
   <div class="tape"></div>
   <div class="photo-frame">
     <img src="images/ecom-henrikvibskov.jpg" alt="Ecommerce campaign photo, Henrik Vibskov"
@@ -704,6 +731,111 @@
   </footer>
 
 </div>
+
+<script>
+  (function () {
+    var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- Custom cursor: Y2K pointer + smooth canvas streak ---------- */
+    if (canHover && !reduceMotion) {
+      document.documentElement.classList.add('custom-cursor-active');
+
+      var pointerSVG =
+        '<svg class="cursor-pointer" viewBox="0 0 240 320" xmlns="http://www.w3.org/2000/svg">' +
+        '<rect x="0" y="0" width="20" height="20" fill="black"/><rect x="0" y="20" width="20" height="20" fill="black"/><rect x="20" y="20" width="20" height="20" fill="black"/><rect x="0" y="40" width="20" height="20" fill="black"/><rect x="20" y="40" width="20" height="20" fill="white"/><rect x="40" y="40" width="20" height="20" fill="black"/><rect x="0" y="60" width="20" height="20" fill="black"/><rect x="20" y="60" width="20" height="20" fill="white"/><rect x="40" y="60" width="20" height="20" fill="white"/><rect x="60" y="60" width="20" height="20" fill="black"/><rect x="0" y="80" width="20" height="20" fill="black"/><rect x="20" y="80" width="20" height="20" fill="white"/><rect x="40" y="80" width="20" height="20" fill="white"/><rect x="60" y="80" width="20" height="20" fill="white"/><rect x="80" y="80" width="20" height="20" fill="black"/><rect x="0" y="100" width="20" height="20" fill="black"/><rect x="20" y="100" width="20" height="20" fill="white"/><rect x="40" y="100" width="20" height="20" fill="white"/><rect x="60" y="100" width="20" height="20" fill="white"/><rect x="80" y="100" width="20" height="20" fill="white"/><rect x="100" y="100" width="20" height="20" fill="black"/><rect x="0" y="120" width="20" height="20" fill="black"/><rect x="20" y="120" width="20" height="20" fill="white"/><rect x="40" y="120" width="20" height="20" fill="white"/><rect x="60" y="120" width="20" height="20" fill="white"/><rect x="80" y="120" width="20" height="20" fill="white"/><rect x="100" y="120" width="20" height="20" fill="white"/><rect x="120" y="120" width="20" height="20" fill="black"/><rect x="0" y="140" width="20" height="20" fill="black"/><rect x="20" y="140" width="20" height="20" fill="white"/><rect x="40" y="140" width="20" height="20" fill="white"/><rect x="60" y="140" width="20" height="20" fill="white"/><rect x="80" y="140" width="20" height="20" fill="white"/><rect x="100" y="140" width="20" height="20" fill="white"/><rect x="120" y="140" width="20" height="20" fill="white"/><rect x="140" y="140" width="20" height="20" fill="black"/><rect x="0" y="160" width="20" height="20" fill="black"/><rect x="20" y="160" width="20" height="20" fill="white"/><rect x="40" y="160" width="20" height="20" fill="white"/><rect x="60" y="160" width="20" height="20" fill="white"/><rect x="80" y="160" width="20" height="20" fill="white"/><rect x="100" y="160" width="20" height="20" fill="white"/><rect x="120" y="160" width="20" height="20" fill="white"/><rect x="140" y="160" width="20" height="20" fill="white"/><rect x="160" y="160" width="20" height="20" fill="black"/><rect x="0" y="180" width="20" height="20" fill="black"/><rect x="20" y="180" width="20" height="20" fill="white"/><rect x="40" y="180" width="20" height="20" fill="white"/><rect x="60" y="180" width="20" height="20" fill="white"/><rect x="80" y="180" width="20" height="20" fill="white"/><rect x="100" y="180" width="20" height="20" fill="white"/><rect x="120" y="180" width="20" height="20" fill="black"/><rect x="140" y="180" width="20" height="20" fill="black"/><rect x="160" y="180" width="20" height="20" fill="black"/><rect x="180" y="180" width="20" height="20" fill="black"/><rect x="0" y="200" width="20" height="20" fill="black"/><rect x="20" y="200" width="20" height="20" fill="white"/><rect x="40" y="200" width="20" height="20" fill="white"/><rect x="60" y="200" width="20" height="20" fill="black"/><rect x="80" y="200" width="20" height="20" fill="white"/><rect x="100" y="200" width="20" height="20" fill="black"/><rect x="0" y="220" width="20" height="20" fill="black"/><rect x="20" y="220" width="20" height="20" fill="white"/><rect x="40" y="220" width="20" height="20" fill="black"/><rect x="80" y="220" width="20" height="20" fill="black"/><rect x="100" y="220" width="20" height="20" fill="white"/><rect x="120" y="220" width="20" height="20" fill="black"/><rect x="0" y="240" width="20" height="20" fill="black"/><rect x="20" y="240" width="20" height="20" fill="black"/><rect x="80" y="240" width="20" height="20" fill="black"/><rect x="100" y="240" width="20" height="20" fill="white"/><rect x="120" y="240" width="20" height="20" fill="black"/><rect x="0" y="260" width="20" height="20" fill="black"/><rect x="100" y="260" width="20" height="20" fill="black"/><rect x="120" y="260" width="20" height="20" fill="white"/><rect x="140" y="260" width="20" height="20" fill="black"/><rect x="100" y="280" width="20" height="20" fill="black"/><rect x="120" y="280" width="20" height="20" fill="white"/><rect x="140" y="280" width="20" height="20" fill="black"/><rect x="120" y="300" width="20" height="20" fill="black"/><rect x="140" y="300" width="20" height="20" fill="black"/>' +
+        '</svg>';
+      var wrap = document.createElement('div');
+      wrap.innerHTML = pointerSVG;
+      var pointer = wrap.firstElementChild;
+      document.body.appendChild(pointer);
+
+      var mouseX = 0, mouseY = 0;
+      window.addEventListener('mousemove', function (e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        pointer.style.left = mouseX + 'px';
+        pointer.style.top = mouseY + 'px';
+      });
+
+      var interactive = document.querySelectorAll('a, .photo-card, .doc-card, .letter, .hero-photo');
+      interactive.forEach(function (el) {
+        el.addEventListener('mouseenter', function () { pointer.classList.add('is-hover'); });
+        el.addEventListener('mouseleave', function () { pointer.classList.remove('is-hover'); });
+      });
+    }
+
+    /* ---------- Magnetic buttons ---------- */
+    if (canHover && !reduceMotion) {
+      var magneticEls = document.querySelectorAll(
+        '.hero-meta a, .footer-links a, .featured-links a, .doc-download'
+      );
+      magneticEls.forEach(function (el) {
+        el.style.display = el.style.display || 'inline-block';
+        el.addEventListener('mousemove', function (e) {
+          var rect = el.getBoundingClientRect();
+          var relX = e.clientX - (rect.left + rect.width / 2);
+          var relY = e.clientY - (rect.top + rect.height / 2);
+          el.style.transition = 'transform 0.05s linear';
+          el.style.transform = 'translate(' + (relX * 0.25) + 'px, ' + (relY * 0.4) + 'px)';
+        });
+        el.addEventListener('mouseleave', function () {
+          el.style.transition = 'transform 0.3s ease';
+          el.style.transform = 'translate(0, 0)';
+        });
+      });
+    }
+
+    /* ---------- Confetti burst on Download click ---------- */
+    var confettiColors = ['#7A1F2B', '#C6432E', '#E4C77A', '#191510'];
+    document.querySelectorAll('.doc-download').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        if (reduceMotion) return;
+        var rect = btn.getBoundingClientRect();
+        var originX = rect.left + rect.width / 2;
+        var originY = rect.top;
+        for (var i = 0; i < 16; i++) {
+          var piece = document.createElement('div');
+          var size = 5 + Math.random() * 4;
+          piece.style.position = 'fixed';
+          piece.style.left = originX + 'px';
+          piece.style.top = originY + 'px';
+          piece.style.width = size + 'px';
+          piece.style.height = size + 'px';
+          piece.style.background = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+          piece.style.pointerEvents = 'none';
+          piece.style.zIndex = '10000';
+          piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+          document.body.appendChild(piece);
+
+          var angle = (Math.random() * Math.PI) + Math.PI;
+          var velocity = 60 + Math.random() * 90;
+          var dx = Math.cos(angle) * velocity;
+          var dy = Math.sin(angle) * velocity - 40;
+
+          piece.animate([
+            { transform: 'translate(0, 0) rotate(0deg)', opacity: 1 },
+            { transform: 'translate(' + dx + 'px, ' + (dy + 120) + 'px) rotate(' + (Math.random() * 360) + 'deg)', opacity: 0 }
+          ], { duration: 700 + Math.random() * 300, easing: 'cubic-bezier(.2,.7,.4,1)' });
+
+          setTimeout(function (p) { return function () { p.remove(); }; }(piece), 1100);
+        }
+      });
+    });
+
+    /* ---------- Playful tab title on switching away ---------- */
+    var originalTitle = document.title;
+    var awayMessages = ["Come back! 👋", "Still here for you...", "Maia misses you!"];
+    var awayTimer = null;
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        document.title = awayMessages[Math.floor(Math.random() * awayMessages.length)];
+      } else {
+        document.title = originalTitle;
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
