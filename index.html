@@ -481,6 +481,96 @@
     filter: drop-shadow(1px 2px 1px rgba(0,0,0,0.35)) drop-shadow(0 0 6px var(--crimson));
   }
 
+  .duck-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 44px;
+    height: 44px;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+    user-select: none;
+  }
+  .duck-follower svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+    transform-origin: 50% 78%;
+    animation: duck-idle 2.4s ease-in-out infinite;
+  }
+  .duck-follower.is-waddling svg {
+    animation: duck-waddle 0.4s ease-in-out infinite;
+  }
+  .duck-follower .foot {
+    transform-box: fill-box;
+    transform-origin: 50% 0%;
+  }
+  .duck-follower.is-waddling .foot-left {
+    animation: foot-step 0.4s ease-in-out infinite;
+  }
+  .duck-follower.is-waddling .foot-right {
+    animation: foot-step 0.4s ease-in-out infinite;
+    animation-delay: 0.2s;
+  }
+  @keyframes duck-waddle {
+    0%   { transform: rotate(-10deg) translateY(0); }
+    50%  { transform: rotate(10deg) translateY(-2px); }
+    100% { transform: rotate(-10deg) translateY(0); }
+  }
+  @keyframes duck-idle {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
+  @keyframes foot-step {
+    0%, 100% { transform: translateY(0) scaleY(1); }
+    50% { transform: translateY(-3px) scaleY(0.85); }
+  }
+
+  .duck-heart {
+    position: absolute;
+    left: 100%;
+    top: -6px;
+    transform: translate(-10px, 4px) scale(0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .duck-heart.show {
+    opacity: 1;
+    transform: translate(-4px, -4px) scale(1);
+  }
+  .duck-heart .duck-dot {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(25,21,16,0.18);
+  }
+  .duck-heart .duck-dot-2 {
+    width: 9px;
+    height: 9px;
+    left: 2px;
+    top: 8px;
+  }
+  .duck-heart .duck-bubble {
+    position: absolute;
+    left: 10px;
+    top: -12px;
+    width: 26px;
+    height: 22px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 3px 8px rgba(25,21,16,0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    line-height: 1;
+    color: #E8578F;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
   }
@@ -782,6 +872,112 @@
         el.addEventListener('mouseenter', function () { pointer.classList.add('is-hover'); });
         el.addEventListener('mouseleave', function () { pointer.classList.remove('is-hover'); });
       });
+
+      /* ---------- A duckling that lives on the screen ---------- */
+      var duck = document.createElement('div');
+      duck.className = 'duck-follower';
+      duck.innerHTML =
+        '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">' +
+          '<ellipse class="foot foot-left" cx="40" cy="90" rx="9" ry="4" fill="#F5891F"/>' +
+          '<ellipse class="foot foot-right" cx="60" cy="90" rx="9" ry="4" fill="#F5891F"/>' +
+          '<ellipse cx="52" cy="66" rx="34" ry="26" fill="#FFCF3F"/>' +
+          '<ellipse cx="40" cy="70" rx="18" ry="11" fill="#F5B916"/>' +
+          '<circle cx="34" cy="38" r="21" fill="#FFCF3F"/>' +
+          '<path d="M14 36 Q2 34 6 44 Q12 48 20 42 Z" fill="#F5891F"/>' +
+          '<circle cx="28" cy="32" r="3.4" fill="#2B2110"/>' +
+        '</svg>' +
+        '<div class="duck-heart"><span class="duck-dot duck-dot-2"></span><span class="duck-bubble">\u2665</span></div>';
+      document.body.appendChild(duck);
+      var duckHeart = duck.querySelector('.duck-heart');
+
+      // Duck lives somewhere on screen and mostly wanders on its own;
+      // only occasionally does it decide to go say hi to the cursor.
+      var duckX = mouseX, duckY = mouseY;
+      var duckFacingLeft = false;
+      var duckState = 'wander'; // 'wander' | 'seek' | 'pause'
+      var targetX = duckX, targetY = duckY;
+      var pauseUntil = 0;
+
+      function pickWanderTarget() {
+        var margin = 60;
+        targetX = margin + Math.random() * (window.innerWidth - margin * 2);
+        targetY = margin + Math.random() * (window.innerHeight - margin * 2);
+      }
+      pickWanderTarget();
+
+      function scheduleNextSeek() {
+        var delay = 30000 + Math.random() * 30000; // visit the cursor rarely: every 30-60s
+        setTimeout(function () {
+          if (duckState !== 'pause') {
+            duckState = 'seek';
+          }
+          scheduleNextSeek();
+        }, delay);
+      }
+      scheduleNextSeek();
+
+      var seekStartedAt = 0;
+
+      function animateDuck() {
+        var now = performance.now();
+
+        if (duckState === 'seek') {
+          if (!seekStartedAt) seekStartedAt = now;
+          targetX = mouseX;
+          targetY = mouseY;
+          // Just a brief visit, then wander off again.
+          if (now - seekStartedAt > 2200) {
+            duckState = 'pause';
+            pauseUntil = now + 600 + Math.random() * 800;
+            seekStartedAt = 0;
+          }
+        } else if (duckState === 'pause') {
+          if (now > pauseUntil) {
+            duckState = 'wander';
+            pickWanderTarget();
+          }
+        }
+
+        var dx = targetX - duckX;
+        var dy = targetY - duckY;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+
+        var speed = duckState === 'seek' ? 0.4 : 0.22; // calm, unhurried
+        if (dist > 2) {
+          var prevDuckX = duckX;
+          duckX += (dx / dist) * speed;
+          duckY += (dy / dist) * speed;
+
+          if (duckX - prevDuckX < -0.02 && !duckFacingLeft) {
+            duckFacingLeft = true;
+            duck.style.transform = 'translate(-50%, -50%) scaleX(1)';
+          } else if (duckX - prevDuckX > 0.02 && duckFacingLeft) {
+            duckFacingLeft = false;
+            duck.style.transform = 'translate(-50%, -50%) scaleX(-1)';
+          }
+          duck.classList.add('is-waddling');
+        } else if (duckState === 'wander') {
+          // Arrived — rest a moment, then wander somewhere new.
+          duckState = 'pause';
+          pauseUntil = now + 1500 + Math.random() * 2500;
+          duck.classList.remove('is-waddling');
+        } else {
+          duck.classList.remove('is-waddling');
+        }
+
+        // Show a little heart whenever the cursor is actually near the duck.
+        var distToCursor = Math.hypot(mouseX - duckX, mouseY - duckY);
+        if (distToCursor < 42) {
+          duckHeart.classList.add('show');
+        } else {
+          duckHeart.classList.remove('show');
+        }
+
+        duck.style.left = duckX + 'px';
+        duck.style.top = duckY + 'px';
+        requestAnimationFrame(animateDuck);
+      }
+      requestAnimationFrame(animateDuck);
     }
 
     /* ---------- Magnetic buttons ---------- */
