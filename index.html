@@ -571,6 +571,44 @@
     color: #E8578F;
   }
 
+  .duck-follower.is-happy svg {
+    animation: duck-happy 0.4s ease-in-out 2;
+  }
+  @keyframes duck-happy {
+    0%, 100% { transform: scale(1, 1); }
+    50% { transform: scale(1.14, 0.86); }
+  }
+
+  .duck-treat {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 34px;
+    z-index: 9997;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.3s ease;
+  }
+  .duck-treat svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: drop-shadow(0 3px 4px rgba(25,21,16,0.2));
+  }
+  .duck-treat.dragging {
+    cursor: grabbing;
+    z-index: 10000;
+    transition: none;
+  }
+  .duck-treat.eaten {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+    pointer-events: none;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
   }
@@ -837,6 +875,7 @@
       <a href="https://www.linkedin.com/in/maiavo" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/maiavvo" target="_blank" rel="noopener">GitHub</a>
     </div>
+    <p class="footer-note">There's a duck living on this page. It wanders on its own, and if you find the carrots, you can feed it.</p>
   </footer>
 
 </div>
@@ -923,6 +962,19 @@
       function animateDuck() {
         var now = performance.now();
 
+        // If the cursor is right on the duck, it freezes completely.
+        var distToCursorNow = Math.hypot(mouseX - duckX, mouseY - duckY);
+        var isHovered = distToCursorNow < 26;
+
+        if (isHovered) {
+          duck.classList.remove('is-waddling');
+          duckHeart.classList.add('show');
+          duck.style.left = duckX + 'px';
+          duck.style.top = duckY + 'px';
+          requestAnimationFrame(animateDuck);
+          return;
+        }
+
         if (duckState === 'seek') {
           if (!seekStartedAt) seekStartedAt = now;
           targetX = mouseX;
@@ -980,6 +1032,86 @@
         requestAnimationFrame(animateDuck);
       }
       requestAnimationFrame(animateDuck);
+
+      /* ---------- A few treats you can drag over to feed the duck ---------- */
+      var activeDragTreat = null;
+
+      function placeTreatRandomly(treat) {
+        var margin = 90;
+        var x = margin + Math.random() * (window.innerWidth - margin * 2);
+        var y = margin + Math.random() * (window.innerHeight - margin * 2);
+        treat.style.left = x + 'px';
+        treat.style.top = y + 'px';
+        treat.dataset.homeX = x;
+        treat.dataset.homeY = y;
+      }
+
+      function feedDuck(treat) {
+        treat.classList.add('eaten');
+        duck.classList.add('is-happy');
+        duckHeart.classList.add('show');
+        setTimeout(function () {
+          duck.classList.remove('is-happy');
+          duckHeart.classList.remove('show');
+        }, 1000);
+        // Eaten for good — it doesn't come back.
+        setTimeout(function () {
+          if (treat.parentNode) treat.parentNode.removeChild(treat);
+        }, 400);
+      }
+
+      function createTreat() {
+        var treat = document.createElement('div');
+        treat.className = 'duck-treat';
+        treat.innerHTML =
+          '<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">' +
+            '<path d="M20 12 L14 3 L19 13 Z" fill="#6FAE4B"/>' +
+            '<path d="M20 12 L20 2 L22 13 Z" fill="#7CBF5A"/>' +
+            '<path d="M20 12 L26 3 L21 13 Z" fill="#6FAE4B"/>' +
+            '<path d="M14.5 15 Q20 11 25.5 15 L21 36 Q20 39 19 36 Z" fill="#F0883E"/>' +
+            '<path d="M16.5 20 L23.5 20" stroke="#D8722F" stroke-width="1.4" stroke-linecap="round"/>' +
+            '<path d="M17 25.5 L23 25.5" stroke="#D8722F" stroke-width="1.4" stroke-linecap="round"/>' +
+            '<path d="M17.7 31 L22.3 31" stroke="#D8722F" stroke-width="1.4" stroke-linecap="round"/>' +
+          '</svg>';
+        document.body.appendChild(treat);
+        treat.querySelector('svg').style.transform = 'rotate(' + (Math.random() * 80 - 40) + 'deg)';
+        placeTreatRandomly(treat);
+
+        treat.addEventListener('pointerdown', function (e) {
+          activeDragTreat = treat;
+          treat.classList.add('dragging');
+          treat.setPointerCapture(e.pointerId);
+          pointer.classList.add('is-hover');
+        });
+
+        return treat;
+      }
+
+      window.addEventListener('pointermove', function (e) {
+        if (activeDragTreat) {
+          activeDragTreat.style.left = e.clientX + 'px';
+          activeDragTreat.style.top = e.clientY + 'px';
+        }
+      });
+
+      window.addEventListener('pointerup', function () {
+        if (!activeDragTreat) return;
+        var treat = activeDragTreat;
+        treat.classList.remove('dragging');
+        pointer.classList.remove('is-hover');
+
+        var tx = parseFloat(treat.style.left);
+        var ty = parseFloat(treat.style.top);
+        var dist = Math.hypot(tx - duckX, ty - duckY);
+
+        if (dist < 50) {
+          feedDuck(treat);
+        }
+        // Otherwise it just stays wherever you dropped it.
+        activeDragTreat = null;
+      });
+
+      for (var t = 0; t < 3; t++) { createTreat(); }
     }
 
     /* ---------- Magnetic buttons ---------- */
