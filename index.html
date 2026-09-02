@@ -822,18 +822,6 @@
         }
       });
     });
-
-    /* ---------- Playful tab title on switching away ---------- */
-    var originalTitle = document.title;
-    var awayMessages = ["Come back! 👋", "Still here for you...", "Maia misses you!"];
-    var awayTimer = null;
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) {
-        document.title = awayMessages[Math.floor(Math.random() * awayMessages.length)];
-      } else {
-        document.title = originalTitle;
-      }
-    });
   })();
 </script>
 
