@@ -157,6 +157,27 @@
   .hero-meta > * { margin: 0 20px 0 0; }
   .hero-meta a:hover { color: var(--oxblood); }
 
+  .section-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    margin-top: 18px;
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--steel);
+  }
+  .section-nav a {
+    color: var(--steel);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+  }
+  .section-nav a:hover {
+    color: var(--oxblood);
+    border-bottom-color: var(--oxblood);
+  }
+
   section.about {
     padding: 12px 0 64px;
     border-bottom: 1px solid var(--line);
@@ -451,6 +472,40 @@
     color: var(--steel);
   }
 
+  .back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: 0 6px 16px rgba(25,21,16,0.28);
+    z-index: 9000;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  .back-to-top:hover {
+    background: var(--oxblood);
+    color: #fff;
+    transform: translateY(-3px);
+  }
+  @media (max-width: 560px) {
+    .back-to-top {
+      right: 16px;
+      bottom: 16px;
+      width: 38px;
+      height: 38px;
+      font-size: 16px;
+    }
+  }
+
   @media (max-width: 560px) {
     .featured {
       grid-template-columns: 1fr;
@@ -614,7 +669,7 @@
   }
 </style>
 </head>
-<body>
+<body id="top">
 
 <div class="wrap">
 
@@ -635,6 +690,14 @@
       <a href="https://www.linkedin.com/in/maiavo" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/maiavvo" target="_blank" rel="noopener">GitHub</a>
     </div>
+    <nav class="section-nav">
+      <a href="#resume-cv">Resume &amp; CV</a>
+      <a href="#operations">Operations &amp; Strategy</a>
+      <a href="#brand-consumer">Brand &amp; Consumer</a>
+      <a href="#research-data">Research &amp; Data</a>
+      <a href="#education">Education</a>
+      <a href="#volunteer">Volunteer &amp; Community</a>
+    </nav>
   </header>
 
   <section class="about">
@@ -643,7 +706,7 @@
   </section>
 
 <section>
-    <div class="divider"><h2>Resume &amp; CV</h2><span class="rule"></span></div>
+    <div class="divider" id="resume-cv"><h2>Resume &amp; CV</h2><span class="rule"></span></div>
     <div class="docs-row">
       <div class="doc-card">
         <a class="doc-view" href="docs/resume.pdf" target="_blank" rel="noopener">
@@ -663,7 +726,7 @@
   </section>
 
   <section>
-    <div class="divider"><h2>Operations &amp; Strategy</h2><span class="rule"></span></div>
+    <div class="divider" id="operations"><h2>Operations &amp; Strategy</h2><span class="rule"></span></div>
 
     <div class="entry">
       <div class="entry-head">
@@ -671,12 +734,7 @@
         <span class="entry-dates">May 2026 &ndash; Present</span>
       </div>
       <div class="entry-role">Operations Manager</div>
-<ul class="entry-bullets">
-  <li>Serve as primary liaison with outside legal counsel on contracts, compliance, and risk matters related to new technology initiatives</li>
-  <li>Led patent research to support business strategy and inform IP-related decisions</li>
-  <li>Advise leadership on adoption of new technology and digital solutions, weighing trade-offs to support scalability and operational efficiency across multiple facilities</li>
-  <li>Travel on-site across facilities to assess workflows and identify opportunities to standardize processes and improve cross-facility efficiency</li>
-</ul>
+<p>Serves as primary liaison with outside legal counsel on contracts, compliance, and risk matters related to new technology initiatives. Has led patent research to support business strategy and inform IP-related decisions.</p>
     </div>
 
     <div class="entry">
@@ -685,15 +743,12 @@
         <span class="entry-dates">May 2021 &ndash; Aug 2022</span>
       </div>
       <div class="entry-role">Business Strategy and Operations Intern</div>
-<ul class="entry-bullets">
-  <li>Conducted healthcare market analysis and competitive research, identifying growth opportunities and market positioning insights</li>
-  <li>Designed and launched community outreach programs including health fairs, educational workshops, and local partnership initiatives</li>
-</ul>
+<p>Conducted healthcare market analysis and competitive research, identifying growth opportunities and market positioning insights.</p>
     </div>
   </section>
 
   <section>
-    <div class="divider"><h2>Brand &amp; Consumer</h2><span class="rule"></span></div>
+    <div class="divider" id="brand-consumer"><h2>Brand &amp; Consumer</h2><span class="rule"></span></div>
 
     <div class="entry">
       <div class="entry-head">
@@ -701,11 +756,7 @@
         <span class="entry-dates">June 2018 &ndash; April 2026</span>
       </div>
       <div class="entry-role">Houston, Boston, New York</div>
-<ul class="entry-bullets">
-  <li>Built a reputation for professionalism and reliability across 8 years and multiple markets, leading to consistent repeat bookings</li>
-  <li>Runway: Akris, Raúl Peñaranda, Tootsies, Alexis Monsanto, Jose Sanchez, Coral Castillo</li>
-  <li>Ecommerce: Converse, New Balance, Tootsies, Henrik Vibskov, Cordera, Lauren Manoogian, Maria McManus</li>
-</ul>
+<p>Modeled under three signed contracts. Pictured is runway work for Alexis Monsanto and Raúl Peñaranda, along with ecommerce campaigns for Converse, New Balance, Tootsies, and Henrik Vibskov.</p>
 <div class="photo-spread">
 <div class="photo-card">
   <div class="tape"></div>
@@ -769,10 +820,7 @@
         <span class="entry-dates">May 2023 &ndash; Jun 2024</span>
       </div>
       <div class="entry-role">Guest Services</div>
-<ul class="entry-bullets">
-  <li>Delivered guest service at a 5-star, 5-diamond luxury property, cultivating professional etiquette and hospitality standards for high-profile clientele in a fast-paced environment</li>
-  <li>Managed front-of-house operations including reservation coordination and seating flow optimization</li>
-</ul>
+<p>Delivered guest service at a 5-star, 5-diamond luxury property, cultivating professional etiquette and hospitality standards for high-profile clientele in a fast-paced environment.</p>
     </div>
 
     <div class="entry">
@@ -781,17 +829,12 @@
         <span class="entry-dates">May &ndash; Jul 2024</span>
       </div>
       <div class="entry-role">Market Research &amp; Branding Strategy Intern</div>
-<ul class="entry-bullets">
-  <li>Led competitive market analysis to inform the strategic case for relaunching the Beats Pill, identifying audience demand signals and cultural timing that supported the comeback decision</li>
-  <li>Contributed to go-to-market strategy for two high-profile launches — the Beats Pill relaunch and the Pro X Kim Kardashian collection — synthesizing consumer research across 1,000+ participants into recommendations presented to senior leadership</li>
-  <li>Used Adobe Analytics to track and evaluate ecommerce and campaign performance metrics</li>
-  <li>Analyzed Gen Z purchasing behaviors and brand perception data to identify emerging market opportunities, directly influencing Q3 branding initiatives</li>
-</ul>
+<p>Led competitive market analysis to inform the strategic case for relaunching the Beats Pill, identifying audience demand signals and cultural timing that supported the comeback decision. Contributed to go-to-market strategy for two high-profile launches — the Beats Pill relaunch and the Pro X Kim Kardashian collection — synthesizing consumer research across 1,000+ participants into recommendations presented to senior leadership.</p>
     </div>
   </section>
 
   <section>
-    <div class="divider"><h2>Research &amp; Data</h2><span class="rule"></span></div>
+    <div class="divider" id="research-data"><h2>Research &amp; Data</h2><span class="rule"></span></div>
 
     <div class="entry">
       <div class="entry-head">
@@ -799,11 +842,7 @@
         <span class="entry-dates">Dec 2025 &ndash; May 2026</span>
       </div>
       <div class="entry-role">Undergraduate Research Assistant</div>
-<ul class="entry-bullets">
-  <li>Design and execute drug synergy analyses identifying optimal combinations using Loewe scores across genomics, metabolomics, and transcriptomics datasets</li>
-  <li>Develop customized Python pipelines to analyze 5,000+ drug-gene interactions in ovarian cancer cell lines OVCAR-4 and OVCAR-5</li>
-  <li>Present research as co-author of &ldquo;Screening of Drug Combination Synergy and Genetic Targets in Chemoresistant Ovarian Cancer&rdquo; at the Northeastern RISE Research Symposium, in collaboration with the University of Michigan</li>
-</ul>
+<p>Designs and executes drug synergy analyses identifying optimal combinations using Loewe scores across genomics, metabolomics, and transcriptomics datasets. Presented this research as co-author of &ldquo;Screening of Drug Combination Synergy and Genetic Targets in Chemoresistant Ovarian Cancer&rdquo; at the Northeastern RISE Research Symposium, in collaboration with the University of Michigan.</p>
       <a class="poster-frame" href="images/rise-poster.jpg" target="_blank" rel="noopener">
         <div class="photo-frame">
           <img src="images/rise-poster.jpg" alt="RISE Research Symposium poster"
@@ -820,11 +859,7 @@
         <span class="entry-dates">Jun 2025 &ndash; Jan 2026</span>
       </div>
       <div class="entry-role">Undergraduate Research Scholar</div>
-<ul class="entry-bullets">
-  <li>Analyzed multi-variable datasets encompassing 3,500+ data points across 120 postpartum participants to identify correlations between diastasis recti severity and functional outcomes</li>
-  <li>Built automated data visualization pipelines in Python to generate 8 interactive dashboards tracking recovery trajectories and treatment efficacy patterns</li>
-  <li>Conducted quantitative analysis of demographic and clinical variables to determine risk factors associated with abdominal muscle separation</li>
-</ul>
+<p>Analyzed multi-variable datasets encompassing 3,500+ data points across 120 postpartum participants to identify correlations between diastasis recti severity and functional outcomes. Built automated data visualization pipelines in Python to generate 8 interactive dashboards tracking recovery trajectories and treatment efficacy patterns.</p>
     </div>
 
     <div class="entry">
@@ -833,10 +868,7 @@
         <span class="entry-dates">Jul 2024 &ndash; Dec 2024</span>
       </div>
       <div class="entry-role">Physical Therapy Technician, Pelvic Floor Rehabilitation</div>
-<ul class="entry-bullets">
-  <li>Assisted Doctors of Physical Therapy and Occupational Therapy in executing personalized rehabilitation treatment plans for 50+ patients a week recovering from injuries and surgeries</li>
-  <li>Supported pelvic floor rehabilitation for postpartum and prenatal patients, gaining clinical exposure to treatment protocols for diastasis recti, pelvic organ prolapse, and pelvic pain</li>
-</ul>
+<p>Supported pelvic floor rehabilitation for postpartum and prenatal patients, gaining clinical exposure to treatment protocols for diastasis recti, pelvic organ prolapse, and pelvic pain.</p>
     </div>
 
     <div class="featured">
@@ -850,11 +882,7 @@
       <div>
         <h3>Athlete Injury Risk Prevention Dashboard</h3>
         <span class="entry-dates">Nov 2025 &ndash; Jan 2026</span>
-        <ul class="entry-bullets">
-          <li>Developed a web dashboard predicting athlete injury risk using evidence-based training load analytics, generating 0&ndash;100 risk scores with actionable load management recommendations</li>
-          <li>Built a multi-factor risk model combining sports medicine metrics (ACWR, load spikes, soreness) weighted by clinical research to identify high-risk periods across 20 athletes over 120 days</li>
-          <li>Designed a real-time monitoring system with color-coded risk KPI status and comparison tools</li>
-        </ul>
+        <p>Developed a web dashboard predicting athlete injury risk using evidence-based training load analytics, generating 0&ndash;100 risk scores with actionable load management recommendations. Built a multi-factor risk model combining sports medicine metrics (ACWR, load spikes, soreness) weighted by clinical research to identify high-risk periods across 20 athletes over 120 days.</p>
         <div class="featured-links">
           <a href="https://athlete-injury-risk-engine.onrender.com" target="_blank" rel="noopener">View live</a>
           <a href="https://github.com/maiavvo/athlete-injury-risk-engine" target="_blank" rel="noopener">View code</a>
@@ -864,9 +892,31 @@
   </section>
 
   <section class="edu">
-    <div class="divider"><h2>Education</h2><span class="rule"></span></div>
+    <div class="divider" id="education"><h2>Education</h2><span class="rule"></span></div>
     <p><strong>Northeastern University, D&rsquo;Amore-McKim School of Business.</strong> B.S., Business Administration &amp; Health Science, Finance concentration, 3.78 GPA.</p>
     <p>NCAA Division I TaeKwonDo athlete, 3x ECTC Champion. Volunteer with MEDLife.</p>
+  </section>
+
+  <section>
+    <div class="divider" id="volunteer"><h2>Volunteer &amp; Community</h2><span class="rule"></span></div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-org">DM Clinical Research</span>
+        <span class="entry-dates">Dec 2020 &ndash; Aug 2022</span>
+      </div>
+      <div class="entry-role">Moderna COVID-19 Vaccine Clinical Trial Participant</div>
+<p>Participated in a Phase 3 clinical trial for the Moderna COVID-19 vaccine over a two-year period, contributing to vaccine efficacy and safety data collection through regular health monitoring and reporting.</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-org">Learning American Sign Language Masks</span>
+        <span class="entry-dates">Mar 2020 &ndash; Jun 2021</span>
+      </div>
+      <div class="entry-role">Carnegie Vanguard High School</div>
+<p>Designed and hand-sewed masks with clear vinyl windows to enable lip-reading and facial expression visibility for deaf and hard-of-hearing communities during COVID-19, donating 250+ masks to Texas Hearing Institute, Deaf and Hard of Hearing Access Specialists, and Champion Forest Baptist Church.</p>
+    </div>
   </section>
 
   <footer>
@@ -879,6 +929,8 @@
   </footer>
 
 </div>
+
+<a href="#top" class="back-to-top" aria-label="Back to top">&uarr;</a>
 
 <script>
   (function () {
