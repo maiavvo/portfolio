@@ -204,6 +204,7 @@
     align-items: baseline;
     gap: 18px;
     margin: 64px 0 28px;
+    scroll-margin-top: var(--nav-h, 70px);
   }
   .divider h2 {
     font-family: 'Bodoni Moda', serif;
@@ -1036,6 +1037,19 @@
     window.addEventListener('scroll', updateScrollProgress, { passive: true });
     window.addEventListener('resize', updateScrollProgress);
     updateScrollProgress();
+
+    /* ---------- Keep section-jump offset in sync with the sticky nav's real height ---------- */
+    var sectionNavEl = document.querySelector('.section-nav');
+    function updateNavHeightVar() {
+      if (!sectionNavEl) return;
+      var h = sectionNavEl.getBoundingClientRect().height;
+      document.documentElement.style.setProperty('--nav-h', (h + 16) + 'px');
+    }
+    updateNavHeightVar();
+    window.addEventListener('resize', updateNavHeightVar);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(updateNavHeightVar);
+    }
 
     /* ---------- Custom cursor: Y2K pointer + smooth canvas streak ---------- */
     if (canHover && !reduceMotion) {
